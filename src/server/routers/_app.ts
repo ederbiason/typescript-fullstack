@@ -5,12 +5,14 @@ export const appRouter = router({
   hello: procedure
     .input(
       z.object({
-        text: z.string(),
+        greeting: z.string(),
       }),
     )
-    .query(({ input }) => {
+    .query(async ({ input, ctx }) => {
+      const count = await ctx.prisma.feedback.count()
+
       return {
-        greeting: `hello ${input.text}`,
+        message: `Feebacks: ${count}`,
       };
     }),
 });
