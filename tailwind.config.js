@@ -1,8 +1,15 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [],
+  content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        brand: {
+          300: '#996dff',
+          500: '#8257e6',
+        },
+      },
+    },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms'), require('tailwind-scrollbar')],
 }
