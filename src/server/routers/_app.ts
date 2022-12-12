@@ -15,6 +15,22 @@ export const appRouter = router({
         message: `Feebacks: ${count}`,
       };
     }),
+
+    createFeedback: procedure
+      .input(
+        z.object({
+          type: z.string(), 
+          content: z.string()
+        })
+      )
+      .mutation(async ({ input, ctx }) => {
+        await ctx.prisma.feedback.create({
+          data: {
+            type: input.type, 
+            content: input.content
+          }
+        })
+      })
 });
 
 export type AppRouter = typeof appRouter;
